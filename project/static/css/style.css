@@ -1273,7 +1273,7 @@ a:active {
 .entry-title {
     line-height: 1.10;
 	margin: .75em 0;
-	text-align: center;
+	/*text-align: center;*/
 }
 .entry-title a {
     color: #606666;
