@@ -1,5 +1,6 @@
 {% load static from staticfiles %}
 {% load wagtailcore_tags wagtailimages_tags %}
+{% load climate_tags %}
 <!DOCTYPE html>
 
 <html lang="en-US" prefix="og: http://ogp.me/ns#">
@@ -82,6 +83,7 @@
 		</header><!-- #masthead -->
 
 		<div id="content" class="site-content">
+			{% top_menu %}
 
 		<div id="primary" class="content-area">
 			<main id="main" class="site-main" role="main">

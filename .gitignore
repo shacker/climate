@@ -91,4 +91,5 @@ ENV/
 local.py
 
 /media/*
+/uploads/*
 static_deploy
