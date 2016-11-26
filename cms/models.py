@@ -8,6 +8,7 @@ from wagtail.wagtailadmin.edit_handlers import (
 from wagtail.wagtailimages.blocks import ImageChooserBlock
 from wagtail.wagtailcore import blocks
 from wagtail.wagtailcore.fields import StreamField
+from cms.stream_blocks import BlockQuoteBlock
 
 
 class ContentPage(Page):
@@ -17,6 +18,7 @@ class ContentPage(Page):
         ('image', ImageChooserBlock()),
         ('html', blocks.RawHTMLBlock()),
         ('page', blocks.PageChooserBlock()),
+        ('blockquote', BlockQuoteBlock()),
 
     ], blank=True, null=True)
 
