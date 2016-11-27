@@ -4,7 +4,10 @@
 
 {% block content %}
 
-    <h2>{{ page.title }}</h2>
+    {% if not page.slug == "homepage" %}
+        <h2>{{ page.get_parent }}</h2>
+        <h3>{{ page.title }}</h3>
+    {% endif %}
 
     {% include_block page.body %}
 
