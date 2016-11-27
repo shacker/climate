@@ -32,7 +32,11 @@ class ContentPage(Page):
 
 class SectionPage(Page):
 
-    pass
+    intro = models.TextField(blank=True, help_text="Optional section intro")
+
+    content_panels = Page.content_panels + [
+        FieldPanel('intro', classname="full"),
+    ]
 
     def __str__(self):
         return self.title

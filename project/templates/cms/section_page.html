@@ -6,6 +6,8 @@
 
     <h2>{{ page.title }}</h2>
 
+    {% if page.intro %}<p>{{ page.intro }}</p>{% endif %}
+
     {% for item in page.get_children  %}
         <h3><a href="{% pageurl item %}">{{ item }}</a></h3>
         {{ item.specific.body|truncatewords:30 }}
