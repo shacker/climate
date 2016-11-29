@@ -32,10 +32,18 @@ class ContentPage(Page):
 
 class SectionPage(Page):
 
-    intro = models.TextField(blank=True, help_text="Optional section intro")
+    intro = StreamField([
+        ('heading', blocks.CharBlock(classname="full title")),
+        ('paragraph', blocks.RichTextBlock()),
+        ('image', ImageChooserBlock()),
+        ('html', blocks.RawHTMLBlock()),
+        ('page', blocks.PageChooserBlock()),
+        ('blockquote', BlockQuoteBlock()),
+
+    ], blank=True, null=True)
 
     content_panels = Page.content_panels + [
-        FieldPanel('intro', classname="full"),
+        StreamFieldPanel('intro'),
     ]
 
     def __str__(self):
