@@ -1,8 +1,8 @@
+from django.db import models
 from modelcluster.fields import ParentalKey
 from wagtail.wagtailadmin.edit_handlers import (FieldPanel, FieldRowPanel, InlinePanel, MultiFieldPanel)
 from wagtail.wagtailcore.fields import RichTextField
 from wagtail.wagtailforms.models import AbstractEmailForm, AbstractFormField
-from wagtail.wagtailforms.edit_handlers import FormSubmissionsPanel
 
 
 class FormField(AbstractFormField):
@@ -12,6 +12,7 @@ class FormField(AbstractFormField):
 class FormPage(AbstractEmailForm):
     intro = RichTextField(blank=True)
     thank_you_text = RichTextField(blank=True)
+    subject = models.CharField(max_length=100, default="No subject")
 
     content_panels = AbstractEmailForm.content_panels + [
         FieldPanel('intro', classname="full"),
