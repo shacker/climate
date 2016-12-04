@@ -67,8 +67,8 @@ def edit_and_send(request, zip):
                                 subject,
                                 message,
                                 from_email='Cross the Aisle for Climate <crossforclimate@gmail.com>',
-                                to=[rep.get('oc_email'), ],
-                                bcc=['shacker@birdhouse.org', 'rsalvadorreyes@mac.com', ])
+                                # to=[rep.get('oc_email'), ],
+                                to=['shacker@birdhouse.org', 'rsalvadorreyes@mac.com', ])
                             msg.send(fail_silently=False)
 
                     print("sending to ", i)
