@@ -11,6 +11,7 @@ INSTALLED_APPS = [
     'cms',
     'contact',
     'search',
+    'beheard',
 
     'wagtail.wagtailforms',
     'wagtail.wagtailredirects',
