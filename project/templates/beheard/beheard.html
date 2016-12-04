@@ -4,11 +4,43 @@
 {% block content %}
 
     <h3>Be Heard</h3>
+
+    {% if results %}
+
+    <p>The message below will be sent to the checked representatives. Please consider personalizing your message by writing additional content in the field below.</p>
+
     <form role="form" action="" method="POST">
         {% csrf_token %}
+
+
+        {% for rep in results %}
+        <p>
+            <input type="checkbox" name="rep_ids" value="{{ rep.govtrack_id }}" checked>
+            <a href="{{ rep.website }}" target="_blank">
+            {% if rep.title == "Rep" %}Representative{% endif %}
+            {% if rep.title == "Sen" %}Senator{% endif %}
+            {{ rep.first_name }} {{ rep.last_name }}</a>
+            ({{ rep.party }})
+        </p>
+        {% endfor %}
+
+        <pre>
+        Dear [Representative Name],
+
+        I'm reaching out to share my strong support for pro-climate policies,
+        and I implore you to work with legislators on both sides of the aisle
+        to defend vital current climate change policies like the Paris Agreement
+        and the Clean Power Plan.
+        </pre>
+
         {{ form|bootstrap }}
         <div class="form-group">
             <button type="submit" class="btn btn-primary">Submit</button>
         </div>
     </form>
+
+    {% else %}
+        <p>No representative were found for that zip code. <a href="{% url 'lookup' %}">Try again?</a></p>
+    {% endif %}
+
 {% endblock content %}
