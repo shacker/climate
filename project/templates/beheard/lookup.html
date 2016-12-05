@@ -3,6 +3,15 @@
 
 {% block content %}
 
+    <h2>Contact Your Representatives</h2>
+
+    <p>
+        It's crucial to let your representatives know that constituents like you stand for
+        sane, bi-partisan legislation in support of the climate.
+    </p>
+
+    <p>Enter your zip code below to locate and contact your Senators and Congressional district rep.</p>
+
     <form role="form" action="" method="POST">
         {% csrf_token %}
         {{ form|bootstrap }}

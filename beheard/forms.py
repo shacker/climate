@@ -17,7 +17,22 @@ class LookupForm(forms.Form):
 class BeHeardForm(forms.Form):
 
     msg = forms.CharField(
-        label='Message Body',
+        label='I support pro-climate policies because:',
+        required=False,
+        widget=forms.Textarea(
+            attrs={'class': 'form-control', 'placeholder': "Share a reason why you're pro-climate (optional)"}),
+        )
+    your_name = forms.CharField(
+        label='Your Name',
         required=True,
-        widget=forms.Textarea(attrs={'class': 'form-control'}),
-        initial="foo")
+        widget=forms.TextInput(
+            attrs={'class': 'form-control', 'placeholder': 'Name'},
+        )
+    )
+    your_town = forms.CharField(
+        label='Your Town, State',
+        required=False,
+        widget=forms.TextInput(
+            attrs={'class': 'form-control', 'placeholder': 'Anytown, MN'},
+        )
+    )

@@ -51,7 +51,8 @@ def edit_and_send(request, zip):
 
         form = BeHeardForm(request.POST)
         if form.is_valid():
-            personal_message = form.cleaned_data['msg']
+            data = form.cleaned_data
+            personal_message = data['msg']
 
             ids = request.POST.getlist('rep_ids')
             if ids:
@@ -59,10 +60,11 @@ def edit_and_send(request, zip):
                     # Get email for rep with matching ID key
                     for rep in results:
                         if rep.get('govtrack_id') == i:
-                            subject = 'I support pro-climate policies like the Paris Agreement and the Clean Power Plan'
+                            subject = 'I support pro-climate policies like the Paris Agreement and the CPP'
+                            ctx = {'rep': rep, 'personal_message': personal_message, 'data': data}
                             message = render_to_string(
                                 "beheard/email/beheard.txt",
-                                {'rep': rep, 'personal_message': personal_message})
+                                ctx)
                             msg = EmailMessage(
                                 subject,
                                 message,
@@ -70,8 +72,6 @@ def edit_and_send(request, zip):
                                 # to=[rep.get('oc_email'), ],
                                 to=['shacker@birdhouse.org', 'rsalvadorreyes@mac.com', ])
                             msg.send(fail_silently=False)
-
-                    print("sending to ", i)
 
             return redirect(reverse('beheard_thanks'))
         else:

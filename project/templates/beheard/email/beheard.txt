@@ -8,5 +8,5 @@ I support Pro-Climate policies because:
 {% endif %}
 
 Sincerely,
-{name}
-{town, state}
+{% if data.your_name %}{{ data.your_name }}{% endif %}
+{% if data.your_town %}{{ data.your_town }}{% endif %}
