@@ -151,6 +151,14 @@
     #logo_secondary {
         display: visible;
     }
+    #logo_secondary_container {
+        margin-bottom: 20px;
+    }
+
+    #menu_toggle_container {
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
 }
 
 /* Hamburger */
