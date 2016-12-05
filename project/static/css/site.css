@@ -8,6 +8,9 @@
     overflow-x: hidden;
  }
 
+body p {
+    font-size: 16px;
+}
 /* Toggle Styles */
 
 #wrapper {
@@ -165,4 +168,9 @@
 .glyphicon {
     color: #30348f;
     font-size: 300%;
+}
+
+blockquote {
+    font-size: 15px;
+    line-height: 1.5em;
 }
