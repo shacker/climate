@@ -3,15 +3,18 @@
 
 {% block content %}
 
-    <h3>Be Heard</h3>
+    <h3>Make Your Voice Be Heard</h3>
 
     {% if results %}
 
-    <p>The message below will be sent to the checked representatives. Please consider personalizing your message by writing additional content in the field below.</p>
+    <p>
+        Your message will be sent to each Representative and Senator checked below.
+        Add a personal touch by sharing something about yourself and your views.
+        A copy of your message will be emailed to you.
+    </p>
 
     <form role="form" action="" method="POST">
         {% csrf_token %}
-
 
         {% for rep in results %}
         <p>

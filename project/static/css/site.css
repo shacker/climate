@@ -9,7 +9,8 @@
  }
 
 body p {
-    font-size: 16px;
+    font-size: 15px;
+    line-height: 1.3em;
 }
 /* Toggle Styles */
 
@@ -173,4 +174,8 @@ body p {
 blockquote {
     font-size: 15px;
     line-height: 1.5em;
+}
+
+.control-label {
+    display: none;
 }

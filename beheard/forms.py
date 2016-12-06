@@ -3,7 +3,9 @@ from django import forms
 
 class LookupForm(forms.Form):
 
-    zip = forms.CharField(label='Zip Code', required=True, widget=forms.TextInput(attrs={'class': 'form-control'}))
+    zip = forms.CharField(
+        label='', required=True,
+        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Your zip code'}))
 
     def clean_zip(self):
         data = self.cleaned_data['zip']
@@ -17,22 +19,32 @@ class LookupForm(forms.Form):
 class BeHeardForm(forms.Form):
 
     msg = forms.CharField(
-        label='I support pro-climate policies because:',
+        label='',
         required=False,
         widget=forms.Textarea(
-            attrs={'class': 'form-control', 'placeholder': "Share a reason why you're pro-climate (optional)"}),
+            attrs={
+                'class': 'form-control',
+                'placeholder': "Share something about who you are and why you're Pro-Climate"}
+            ),
         )
     your_name = forms.CharField(
-        label='Your Name',
+        label='Sincerely,',
         required=True,
         widget=forms.TextInput(
-            attrs={'class': 'form-control', 'placeholder': 'Name'},
+            attrs={'class': 'form-control', 'placeholder': 'Your Name'},
         )
     )
     your_town = forms.CharField(
-        label='Your Town, State',
+        label='',
         required=False,
         widget=forms.TextInput(
-            attrs={'class': 'form-control', 'placeholder': 'Anytown, MN'},
+            attrs={'class': 'form-control', 'placeholder': 'City, State'},
+        )
+    )
+    your_email = forms.EmailField(
+        label='',
+        required=True,
+        widget=forms.TextInput(
+            attrs={'class': 'form-control', 'placeholder': 'you@example.com'},
         )
     )

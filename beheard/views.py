@@ -45,10 +45,9 @@ def edit_and_send(request, zip):
         url = 'https://congress.api.sunlightfoundation.com/legislators/locate?zip={zip}'.format(zip=zip)
         req = requests.request('GET', url)
         results = json.loads(req.text)['results']
-        cache.set(cache_name, results, 60 * 10)
+        cache.set(cache_name, results, 60 * 60)
 
     if request.method == "POST":
-
         form = BeHeardForm(request.POST)
         if form.is_valid():
             data = form.cleaned_data
@@ -70,7 +69,8 @@ def edit_and_send(request, zip):
                                 message,
                                 from_email='Cross the Aisle for Climate <crossforclimate@gmail.com>',
                                 # to=[rep.get('oc_email'), ],
-                                to=['shacker@birdhouse.org', 'rsalvadorreyes@mac.com', ])
+                                to=['test@example.com'],
+                                cc=[form.cleaned_data['your_email'], ])
                             msg.send(fail_silently=False)
 
             return redirect(reverse('beheard_thanks'))
