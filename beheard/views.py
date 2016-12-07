@@ -9,6 +9,7 @@ from django.contrib import messages
 from django.template.loader import render_to_string
 
 from beheard.forms import LookupForm, BeHeardForm
+from beheard.models import BeheardLog
 
 
 def lookup(request):
@@ -70,8 +71,19 @@ def edit_and_send(request, zip):
                                 from_email='Cross the Aisle for Climate <crossforclimate@gmail.com>',
                                 # to=[rep.get('oc_email'), ],
                                 to=['test@example.com'],
-                                cc=[form.cleaned_data['your_email'], ])
+                                cc=[data['your_email'], ])
                             msg.send(fail_silently=False)
+
+                            # Log message to db
+                            BeheardLog.objects.create(
+                                sender_name=data.get('your_name'),
+                                sender_email=data.get('your_email'),
+                                sender_location=data.get('your_town'),
+                                recip_name='{f} {l}'.format(f=rep.get('first_name'), l=rep.get('last_name')),
+                                recip_email=rep.get('oc_email'),
+                                recip_bioguide_id=rep.get('bioguide_id'),
+                                cust_msg=data.get('msg')
+                            )
 
             return redirect(reverse('beheard_thanks'))
         else:
