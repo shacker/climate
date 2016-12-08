@@ -17,7 +17,7 @@ urlpatterns = [
     url(r'^documents/', include(wagtaildocs_urls)),
 
     url(r'^search/$', search_views.search, name='search'),
-    url(r'^beheard/$', lookup, name='lookup'),
+    url(r'^beheard/$', lookup, name='beheard_lookup'),
     url(r'^beheard/thanks/$', beheard_thanks, name='beheard_thanks'),
     url(r'^beheard/send/(?P<zip>[\w-]+)/$', edit_and_send, name='edit_and_send'),
 

@@ -44,7 +44,7 @@
     </form>
 
     {% else %}
-        <p>No representative were found for that zip code. <a href="{% url 'lookup' %}">Try again?</a></p>
+        <p>No representative were found for that zip code. <a href="{% url 'beheard_lookup' %}">Try again?</a></p>
     {% endif %}
 
 {% endblock content %}
