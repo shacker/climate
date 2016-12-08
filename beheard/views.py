@@ -68,7 +68,7 @@ def edit_and_send(request, zip):
                             msg = EmailMessage(
                                 subject,
                                 message,
-                                from_email='Cross the Aisle for Climate <crossforclimate@gmail.com>',
+                                from_email=data['your_email'],
                                 to=[rep.get('oc_email'), ],
                                 # to=['test@example.com'],
                                 cc=[data['your_email'], ])
