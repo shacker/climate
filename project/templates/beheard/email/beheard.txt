@@ -10,3 +10,6 @@ I support Pro-Climate policies because:
 Sincerely,
 {% if data.your_name %}{{ data.your_name }}{% endif %}
 {% if data.your_town %}{{ data.your_town }}{% endif %}
+
+Sent via CrossForClimate:
+http://crossforclimate.com
