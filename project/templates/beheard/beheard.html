@@ -13,7 +13,7 @@
         A copy of your message will be emailed to you.
     </p>
 
-    <form role="form" action="" method="POST">
+    <form role="form" action="" method="POST" id="beheard_form">
         {% csrf_token %}
 
         {% for rep in results %}

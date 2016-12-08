@@ -176,6 +176,6 @@ blockquote {
     line-height: 1.5em;
 }
 
-.control-label {
+#beheard_form .control-label {
     display: none;
 }
