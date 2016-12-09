@@ -1,3 +1,4 @@
+import bleach
 import json
 import requests
 
@@ -52,7 +53,9 @@ def edit_and_send(request, zip):
         form = BeHeardForm(request.POST)
         if form.is_valid():
             data = form.cleaned_data
-            personal_message = data['msg']
+            personal_message = bleach.clean(data['msg'], strip=True)
+            your_name = bleach.clean(data['your_name'], strip=True)
+            your_town = bleach.clean(data['your_town'], strip=True)
 
             ids = request.POST.getlist('rep_ids')
             if ids:
@@ -61,7 +64,12 @@ def edit_and_send(request, zip):
                     for rep in results:
                         if rep.get('govtrack_id') == i:
                             subject = 'I support pro-climate policies like the Paris Agreement and the CPP'
-                            ctx = {'rep': rep, 'personal_message': personal_message, 'data': data}
+                            ctx = {
+                                'rep': rep,
+                                'personal_message': personal_message,
+                                'your_name': your_name,
+                                'your_town': your_town
+                                }
                             message = render_to_string(
                                 "beheard/email/beheard.txt",
                                 ctx)
