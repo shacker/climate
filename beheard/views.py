@@ -22,7 +22,8 @@ def lookup(request):
 
         form = LookupForm(request.POST)
         if form.is_valid():
-            return redirect(reverse('edit_and_send', args=[form.cleaned_data['zip']]))
+            zip = form.cleaned_data['zip']
+            return redirect(reverse('edit_and_send', args=[zip]))
         else:
             messages.error(request, "There were errors in the form.")
 
@@ -40,6 +41,11 @@ def edit_and_send(request, zip):
     """
     Look up senators and rep by zip, provide form to send email to them.
     """
+
+    # Block if user has already sent to this zipcode and is not logged in.
+    has_sent_zip = 'oktosend_{z}'.format(z=zip)
+    if request.session.get(has_sent_zip) and not request.user.is_authenticated():
+        return redirect(reverse('beheard_noop'))
 
     cache_name = "zipresults_{z}".format(z=zip)
     results = cache.get(cache_name)
@@ -82,6 +88,9 @@ def edit_and_send(request, zip):
                                 cc=[data['your_email'], ])
                             msg.send(fail_silently=False)
 
+                            # Plant session var to prevent sending to this zip again
+                            request.session['oktosend_{z}'.format(z=zip)] = True
+
                             # Log message to db
                             BeheardLog.objects.create(
                                 sender_name=data.get('your_name'),
@@ -112,5 +121,14 @@ def beheard_thanks(request):
     return render(
         request,
         'beheard/beheard_thanks.html',
+        locals(),
+        )
+
+
+def beheard_noop(request):
+
+    return render(
+        request,
+        'beheard/beheard_noop.html',
         locals(),
         )
