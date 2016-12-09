@@ -179,3 +179,8 @@ blockquote {
 #beheard_form .control-label {
     display: none;
 }
+
+hr {
+    background-color: #acacac !important;
+    height: 1px;
+}
