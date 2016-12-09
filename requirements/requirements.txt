@@ -3,3 +3,4 @@ wagtail>=1.7,<1.8
 psycopg2
 git+https://github.com/tzangms/django-bootstrap-form.git
 requests
+bleach
