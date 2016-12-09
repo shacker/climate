@@ -2,14 +2,11 @@ Dear {{rep.first_name}} {{rep.last_name}},
 
 I'm reaching out to share my strong support for pro-climate policies, and I implore you to work with legislators on both sides of the aisle to defend vital current climate change policies like the Paris Agreement and the Clean Power Plan.
 
-{% if personal_message %}
-I support Pro-Climate policies because:
-{{ personal_message }}
-{% endif %}
+{% if personal_message %}{{ personal_message|safe }}{% endif %}
 
-Sincerely,
-{% if data.your_name %}{{ data.your_name }}{% endif %}
-{% if data.your_town %}{{ data.your_town }}{% endif %}
+{% if your_name %}Sincerely,
+{{ your_name|safe }}{% endif %}
+{% if your_town %}{{ your_town|safe }}{% endif %}
 
-Sent via CrossForClimate:
+Sent via Cross the Aisle for Climate:
 http://crossforclimate.com
